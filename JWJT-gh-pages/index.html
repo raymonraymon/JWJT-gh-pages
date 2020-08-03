@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+	<style>
+		html, body{
+			margin: 0;
+			padding: 0;
+
+			color: #999;
+			background-color: #111;
+
+			font-family: monospace;
+			font-size: 12px;
+
+			cursor: default;
+		}
+
+		#W {
+			width: 900px;
+			height: 900px;
+
+			margin: 20px auto;
+			position: relative;
+
+			border: 1px dashed #999;
+
+			overflow: hidden;
+		}
+
+		.box {
+			width: 20px;
+			height: 20px;
+			border: 1px solid #999;
+
+			position: absolute;
+
+			box-sizing: border-box;
+		}
+
+	</style>
+
+
+	<script language = "javascript" src = "jquery-2.1.4.min.js"></script>
+
+	<script language = "javascript" src = "math/numeric.js"></script>
+	<script language = "javascript" src = "math/misc_math.js"></script>
+	<script language = "javascript" src = "math/disjoint.js"></script>
+
+	<script language = "javascript" src = "constraints/constraint_general.js"></script>
+	<script language = "javascript" src = "constraints/constraint_rev.js"></script>
+	<script language = "javascript" src = "constraints/constraint_dist.js"></script>
+	<script language = "javascript" src = "constraints/constraint_anchor.js"></script>
+	<script language = "javascript" src = "constraints/constraint_weld.js"></script>
+
+	<script language = "javascript" src = "bodies/body_box.js"></script>
+
+	<script language = "javascript" src = "collision/detection_box2box.js"></script>
+	<script language = "javascript" src = "collision/contact_generation.js"></script>
+	<script language = "javascript" src = "collision/collision_constraint.js"></script>
+	<script language = "javascript" src = "collision/collision_groups.js"></script>
+
+	<script language = "javascript" src = "interactivity/dragging.js"></script>
+
+	<script language = "javascript" src = "engine/timestepping.js"></script>
+	<script language = "javascript" src = "engine/param.js"></script>
+	<script language = "javascript" src = "engine/interface.js"></script>
+
+	<script language = "javascript" src = "tools/debug.js"></script>
+
+	<script language = "javascript">
+
+
+		$(document).ready(function(){
+
+			$(document).on('mousemove', update_q); //positioncheck
+
+			$('#W').on('mouseup', stopdrag);
+			$('#W').on('mouseleave', stopdrag);
+
+			
+			create_box(1e+12, 180, 40, [300, 200, 0], [0, 0, 0]);
+			anchor(0);
+			
+			//create_box(1, 40, 40, [220, 250, Math.PI/4+0.2], [5, 0, 0]);
+			//create_box(1, 40, 40, [380, 250, 0.6], [-10, 0, 0]);
+			
+			
+			create_box(1, 40, 40, [299, 250, 0], [0, 0, 0]);
+			create_box(1, 40, 40, [300, 300, 0], [0, 0, 0]);
+			create_box(1, 40, 40, [300, 350, 0], [0, 0, 0]);
+
+
+			
+			create_box(1, 40, 40, [300, 400, 0], [0, 0, 0]);
+			create_box(1, 40, 40, [300, 450, 0], [0, 0, 0]);
+
+			create_box(1, 40, 40, [300, 500, 0], [0, 0, 0]);
+
+			create_box(1, 40, 40, [800, 500, 0], [-80, 0, 2]);
+			
+
+
+			window.setInterval(timestep, 100*dt);
+
+		});
+
+
+		
+
+
+		
+
+		
+	</script>
+</head>
+
+<body>
+	<div id = "W">
+
+	</div>
+
+
+</body>
+
+</html>
